@@ -6,8 +6,20 @@
 // ─────────────────────────────────────────────────────────────
 // Status bar
 // ─────────────────────────────────────────────────────────────
-function IOSStatusBar({ dark = false, time = '9:41' }) {
+function IOSStatusBar({ dark = false, time: timeProp }) {
   const c = dark ? '#fff' : '#000';
+  const [now, setNow] = React.useState(() => {
+    const d = new Date();
+    return d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0');
+  });
+  React.useEffect(() => {
+    const id = setInterval(() => {
+      const d = new Date();
+      setNow(d.getHours().toString().padStart(2,'0') + ':' + d.getMinutes().toString().padStart(2,'0'));
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+  const time = timeProp || now;
   return (
     <div style={{
       display: 'flex', gap: 154, alignItems: 'center', justifyContent: 'center',

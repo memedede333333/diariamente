@@ -91,7 +91,7 @@ function App() {
   // Welcome screen on first paint
   const [welcome, setWelcome] = useState(true);
   useEffect(() => {
-    const t = setTimeout(() => setWelcome(false), 1900);
+    const t = setTimeout(() => setWelcome(false), 4500);
     return () => clearTimeout(t);
   }, []);
 
@@ -258,7 +258,7 @@ function Welcome() {
       display: 'flex', flexDirection: 'column',
       alignItems: 'center', justifyContent: 'center',
       padding: 32, textAlign: 'center',
-      animation: 'fadeOut 0.5s ease 1.4s forwards'
+      animation: 'fadeOut 0.6s ease 3.8s forwards'
     }}>
       <style>{`
         @keyframes fadeOut { to { opacity: 0; } }
